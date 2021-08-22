@@ -27,6 +27,11 @@ class BlogsController < ApplicationController
     redirect_to blog_path(blog)
   end
 
+  def destory
+    blog = Blog.find(params[:id])
+    blog.destory(blog_params)
+    redirect_to blogs_path
+
   private
   def blog_params
     params.require(:blog).permit(:title, :category, :body)

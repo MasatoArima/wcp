@@ -34,16 +34,22 @@ describe '投稿のテスト' do
         fill_in 'list[title]', with: Faker::Lorem.characters(number:10)
         fill_in 'list[body]', with: Faker::Lorem.characters(number:30)
         click_button '投稿'
-        expect(page).to have_current_path todolist_path(Listlist)
+        expect(page).to have_current_path todolist_path(List.list)
     end
   end
 
 
-  describe：一覧画面のテスト
-    before：一覧画面への遷移
-    context ：一覧の表示とリンクの確認
-      it：一覧表示画面に投稿されたもの表示されているか
-        テストコード
+  describe'一覧画面のテスト' do
+    before'一覧画面への遷移' do
+      visit todolists_path
+    end
+    context '一覧の表示とリンクの確認' do
+      it'一覧表示画面に投稿されたもの表示されているか' do
+        expect(page).to have_content list.title
+        expect(page).to have_link list.title
+      end
+    end
+  end
 
   describe：詳細画面のテスト
     before：詳細画面への遷移
